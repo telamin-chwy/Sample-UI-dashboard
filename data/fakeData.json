@@ -1,0 +1,77 @@
+{
+    "services" : [
+        {
+            "name" : "service-1",
+            "id" : 1,
+            "health" : "working",
+            "children" :[
+                {
+                    "name" : "service-1-A",
+                    "id" : 2,
+                    "health" : "working",
+                    "children" : [
+                        {
+                            "name" : "service-1-A-1",
+                            "id" : 3,
+                            "health" : "Notworking",
+                            "children" : []
+                    
+                },
+                {
+                            "name" : "service-1-A-2",
+                            "id" : 4,
+                            "health" : "working",
+                            "children" : []
+                        } 
+                    ]
+                }   
+
+            ]  
+            
+        },
+        {
+            "name" : "service-2",
+            "id" : 5,
+            "health":"working",
+            "children":[
+                {
+                    "name":"service-2-A",
+                    "id" : 6,
+                    "health" :"Notworking",
+                    "children" :[]
+                 
+                }
+            ]
+        },
+        {
+            "name" : "service-3",
+            "id" : 7,
+            "health" :"Notworking",
+            "children" :[
+                {
+                    "name" : "service-3-A",
+                    "id" : 8,
+                    "health" : "working",
+                    "children" : [
+                        {
+                            "name" : "service-3-A-1",
+                            "id" : 9,
+                            "health" : "Notworking",
+                            "children" :[]
+                        },
+                        {
+                            "name" : "service-3-A-2",
+                            "id" : 10,
+                            "health" : "Notworking",
+                            "children" :[]
+                        }
+
+                    ]
+                }   
+            ]
+                
+        }
+            
+    ]
+
+}

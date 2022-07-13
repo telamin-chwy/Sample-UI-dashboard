@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+}
+
+.hader{
+    margin: 0;
+    background-color: black;
+}
+.bar{
+    padding: 15px;
+}
+
+.text_Field_lable{
+    color:white;
+}
+.treeview{
+    background-color: #1976d2;
+    height: 100vh;
+    width: 20%;
+    color: white;
+}
+
+
