@@ -1,77 +1,52 @@
 {
-    "services" : [
-        {
-            "name" : "service-1",
-            "id" : 1,
-            "health" : "working",
-            "children" :[
-                {
-                    "name" : "service-1-A",
-                    "id" : 2,
-                    "health" : "working",
-                    "children" : [
-                        {
-                            "name" : "service-1-A-1",
-                            "id" : 3,
-                            "health" : "Notworking",
-                            "children" : []
-                    
+"sources" : [{
+    "name": "inventory-svc",
+    "id":1,
+    "details": {
+        "servlet": "**********"
+    },
+    "children": [{
+        "name": "postgresql",
+        "id":2,
+        "details": {},
+        "children": []
+    },
+    {
+        "name": "java-aws-sdk",
+        "id":3,
+        "details": {
+            "http": "*******-**"
+        },
+        "children": [{
+            "name": "stark-appointment-service",
+            "id":4,
+            "details": {
+                "http": "**********",
+                "servlet": "**********"
+            },
+            "children": [{
+                "name": "chewy-auth",
+                "id":5,
+                "details": {
+                    "servlet": "**********"
+                },
+                "children": [{
+                    "name": "chewy-auth-user-api",
+                    "id":6,
+                    "details": {
+                        "servlet": "**********"
+                    },
+                    "children": []
                 },
                 {
-                            "name" : "service-1-A-2",
-                            "id" : 4,
-                            "health" : "working",
-                            "children" : []
-                        } 
-                    ]
-                }   
+                    "name": "keycloak-db",
+                    "id":7,
+                    "details": {},
+                    "children": []
+                }]
+            }]
+        }]
+    }]
 
-            ]  
-            
-        },
-        {
-            "name" : "service-2",
-            "id" : 5,
-            "health":"working",
-            "children":[
-                {
-                    "name":"service-2-A",
-                    "id" : 6,
-                    "health" :"Notworking",
-                    "children" :[]
-                 
-                }
-            ]
-        },
-        {
-            "name" : "service-3",
-            "id" : 7,
-            "health" :"Notworking",
-            "children" :[
-                {
-                    "name" : "service-3-A",
-                    "id" : 8,
-                    "health" : "working",
-                    "children" : [
-                        {
-                            "name" : "service-3-A-1",
-                            "id" : 9,
-                            "health" : "Notworking",
-                            "children" :[]
-                        },
-                        {
-                            "name" : "service-3-A-2",
-                            "id" : 10,
-                            "health" : "Notworking",
-                            "children" :[]
-                        }
-
-                    ]
-                }   
-            ]
-                
-        }
-            
-    ]
-
+ }]
 }

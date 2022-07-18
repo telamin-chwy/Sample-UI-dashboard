@@ -20,4 +20,16 @@
     color: white;
 }
 
+.flex-container{
+    display: flex;
+    
+}
+.paper{
+    background-color: #FCFCFC;
+    height: 50px;
+    width: 600px;
+    margin-left: 30px;
+    margin-top: 30px;
+    
+}
 
