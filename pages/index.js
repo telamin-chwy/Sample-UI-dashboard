@@ -4,8 +4,7 @@ import TreeItem from '@mui/lab/TreeItem';
 import Card from '../components/card';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { useState } from 'react';
-
+import React, { useState } from 'react';
 
 
 export async function getStaticProps() {
@@ -17,48 +16,68 @@ export async function getStaticProps() {
     }
   }
  }
-
-const getTreeItemFromData = (data) => {
-  return data.map((dataItems) => {
-    let children = undefined;
-    if (dataItems.children && dataItems.children.length > 0 ){
-      children = getTreeItemFromData (dataItems.children)
-    }
-    return (
-      <TreeItem
-            collapseIcon={<ArrowDropDownIcon/>}
-            expandIcon={<ArrowRightIcon/>}
-            key={dataItems.id}
-            nodeId={dataItems.id}
-            label={dataItems.name}
-            children={children}
-            onClick={showCard}
-          />
-    )
-    }
-  )
-}
-
-const DataTreeView = ({ data }) => {
-  return (
-    <TreeView className='treeview'>
-
-      {getTreeItemFromData(data)}
-
-    </TreeView>
-  );
-};
-
-
+ 
 
 export default function Home({data}) {
+  
+  const [sName, setSName] = useState("");
+  const[DisplayDepe, setDisplayDepe] = useState("")
+
+  const getServiceData = (dataItems) => {
+    setSName(dataItems.name);
+    // setDisplayDepe(children);
+    }
+  
+  var nodeIds = []
+  const getTreeItemFromData = (data) => {
+    return data.map((dataItems) => {
+      nodeIds.push(dataItems.id)
+      let children = undefined;
+      if (dataItems.children && dataItems.children.length > 0 ){
+        children = getTreeItemFromData (dataItems.children)
+      }
+      return (
+        <TreeItem
+              collapseIcon={<ArrowDropDownIcon/>}
+              expandIcon={<ArrowRightIcon/>}
+              key={dataItems.name}
+              nodeId={dataItems.id}
+              label={dataItems.name}
+              children={children}
+              onClick={()=>getServiceData(dataItems)}
+            />
+      )
+      }
+    )
+  }
+  const DataTreeView = ({ data }) => {
+    return (
+      <TreeView
+      defaultExpanded={nodeIds}
+      className='treeview'
+      >
+  
+        {getTreeItemFromData(data)}
+  
+      </TreeView>
+    );
+  };
+
   return (
     <div>
     <Hader/> 
   <div className="flex-container">
-    <DataTreeView data={data}/>
+    <DataTreeView 
+    data={data}/>
+      <Card name={sName}/>
+
     
    </div> 
    </div>
   )
 }
+
+
+
+
+

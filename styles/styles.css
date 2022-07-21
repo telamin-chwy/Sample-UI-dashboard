@@ -26,10 +26,18 @@
 }
 .paper{
     background-color: #FCFCFC;
-    height: 50px;
+    height: 400px;
     width: 600px;
     margin-left: 30px;
     margin-top: 30px;
-    
+    overflow: auto;
+}
+.health-div{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+.dependencies{
+    margin-top: 100px;
 }
 
