@@ -1,51 +1,87 @@
 import React from 'react'
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
+import CancelIcon from '@mui/icons-material/Cancel';
 import TreeView from '@mui/lab/TreeView';
 import TreeItem from '@mui/lab/TreeItem';
-
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { useState } from 'react';
+import { red } from '@mui/material/colors';
 
 
 
 
 const card = (props) => {
+  
+  const depad = props
+  // const getChildern = () => {
+  //   return props.nestedSer.map((childrens) => {
+  //     let children = undefined;
+  //     if (childrens.children && childrens.children.length > 0 ){
+  //       children = getChildern(childrens.children)
+  //     }
+  //     return (
+  //       <TreeItem
+  //             collapseIcon={<ArrowDropDownIcon/>}
+  //             expandIcon={<ArrowRightIcon/>}
+  //             key={childrens.name}
+  //             nodeId={childrens.name}
+  //             label={childrens.name}
+  //             children={children}/>
+  //     )
+  //     }
+  //   )
+  // }
+  // const DataTreeViewChildern = ({ props }) => {
+  //   return (
+  //     <TreeView
+  //     >
+  //       {getChildern(props)}
 
-  const getChildern = (props) => {
-    return props.dependencies.map((dependencies) => {
-      let children = undefined;
-      if (dependencies && dependencies.length > 0 ){
-        children = getChildern (dependenciesen)
+  //     </TreeView>
+  //   );
+  // };
+
+  const arrOfErrorRateHttp = []
+  const arrOfErrorRateServlet = []
+  const httpErrorRateString = props.httpErrorRate
+  const servletErrorRateString = props.servletErrorRate
+
+  if(httpErrorRateString != null){
+    httpErrorRateString.split("").forEach((char) =>{
+      if(char == "*"){
+        arrOfErrorRateHttp.push(<DoneOutlineIcon color="primary" fontSize="small" />)
       }
-      return (
-        <TreeItem
-              collapseIcon={<ArrowDropDownIcon/>}
-              expandIcon={<ArrowRightIcon/>}
-              key={dependencies.name}
-              nodeId={dependencies.id}
-              label={dependencies.name}
-              children={children}
-            />
+      else{
+        arrOfErrorRateHttp.push(<CancelIcon sx={{color:'red'}} fontSize="small"/>)
+      }
+      return(
+        {arrOfErrorRateHttp}
       )
-      }
-    )
+    })
   }
-  const DataTreeView = ({props}) => {
-    return (
-      <TreeView
-      className='treeview'
-      >
-  
-        {getChildern(props)}
-  
-      </TreeView>
-    );
-  };
-
+  if(servletErrorRateString != null){
+    servletErrorRateString.split("").forEach((char) =>{
+      if(char == "*"){
+        arrOfErrorRateServlet.push(<DoneOutlineIcon color="primary" fontSize="small"/>)
+      }
+      else{
+        arrOfErrorRateServlet.push(<CancelIcon sx={{color:'red'}} fontSize="small"/>)
+      }
+      return(
+        {arrOfErrorRateServlet}
+      )
+    })
+  }
   return (
+
       <Paper variant='elevation' 
       className='paper' 
       sx={{fontFamily:"roboto"
-      ,alignItems:"center"}} >
+      ,alignItems:"center"}} 
+      >
         
         <Typography color="primary" variant="small" 
         sx={{color:"black",
@@ -53,17 +89,25 @@ const card = (props) => {
         marginLeft:2}}>{props.name} </Typography>
         
         <div className="health-div">
-        <Typography color="primary" variant="small" 
-        sx={{color:"black"}}>Https  <br/> Display </Typography>
+        
+        { props.httpErrorRate != null && 
+         <Typography color="primary" variant="small" 
+          sx={{color:"black"}}> Https
+          <br/>
+          {arrOfErrorRateHttp}
+          </Typography>}
 
-        <Typography color="primary" variant="small" 
-        sx={{color:"black"}}>Servelt<br/> Display </Typography>
+       { props.servletErrorRate != null && 
+       <Typography color="primary" variant="small" 
+        sx={{color:"black"}}>Servelt <br/>
+         {arrOfErrorRateServlet} </Typography>}
+        
         </div>
         <div className='dependencies'>
         <Typography  color="primary" variant="small" 
-        sx={{color:"black" ,marginLeft:2}}>Dependencies<br/>  </Typography>
+        sx={{color:"black" ,marginLeft:2}}><br/>  </Typography>
         <br/>
-        <DataTreeView/>
+        {/* <DataTreeViewChildern displayNames ={props}/> */}
         </div>
 
       </Paper>

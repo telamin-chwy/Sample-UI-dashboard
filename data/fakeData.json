@@ -3,7 +3,7 @@
     "name": "inventory-svc",
     "id":1,
     "details": {
-        "servlet": "**********"
+        "servlet": "****---****"
     },
     "children": [{
         "name": "postgresql",
@@ -34,7 +34,7 @@
                     "name": "chewy-auth-user-api",
                     "id":6,
                     "details": {
-                        "servlet": "**********"
+                        "servlet": "***---*****"
                     },
                     "children": []
                 },
